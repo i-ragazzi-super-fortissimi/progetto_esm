@@ -110,12 +110,6 @@ print("Test accuracy:", test_accuracy)
 predictions = model.predict(test_dataset)
 predicted_classes = np.argmax(predictions, axis=1)
 
-pred_df = pd.DataFrame(predicted_classes,columns=['Predictions'])
-id_df = pd.DataFrame(test_table.index, columns=['id'])
-sub = pd.concat([id_df, pred_df], axis=1)
-sub.set_index('id', inplace=True)
-sub.to_csv("Predictions.csv")
-
 true_classes = []
 for images, labels in test_dataset:
     true_classes.extend(np.argmax(labels.numpy(), axis=1))
